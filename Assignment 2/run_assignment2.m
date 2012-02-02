@@ -19,11 +19,23 @@ for emotion = 1:6
 end
 
 %Start evaluating the learning algorithm using ten-fold cross validation.
+<<<<<<< HEAD
+=======
+y = [];
+>>>>>>> 1b8af15de7ba7130bca1e21ee20b0dafe5e545f9
 for i = 0:9
     [trainSet, testSet] = split_dataset(i, examples, targets);
     for emotion = 1:6
         theEmotions{emotion} = remap_targets(trainSet.targets,emotion);
         trees_of_emotions{emotion} = decision_tree_learning(trainSet.examples,attribs,theEmotions{emotion});
+	%DrawDecisionTree(trees_of_emotions{emotion},emolab2str(emotion));
     end
-    y = testTrees(trees_of_emotions, testSet.examples);
+    y = cat(2,y,testTrees(trees_of_emotions, testSet.examples)); %adds a column for each example
 end
+
+
+testSet.targets
+y
+confusionMatrix = generate_confusion_matrix(y,testSet.targets)
+
+
