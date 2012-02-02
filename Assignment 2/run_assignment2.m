@@ -25,6 +25,6 @@ for emotion = 1:6
 end
 
 %Start evaluating the learning algorithm using ten-fold cross validation.
-for i = 0:9:
+for i = 0:9
     [trainSet, testSet] = split_dataset(i, examples, targets)
 end
