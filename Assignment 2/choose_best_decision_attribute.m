@@ -1,6 +1,6 @@
 function [bestDecisionAttribute] = choose_best_decision_attribute(attribs,examples,targets)
 %CHOOSE_BEST_DECISION_ATTRIBUTE - measuring how 'good' each attribute in the set is via ID3 algorithm,
-%				  this returns the attribute with the largest information gain.
+%this returns the attribute with the largest information gain.
 %
 %IN:  attribs: 	list of attributes
 %     examples: set of training examples with X columns less than or equal to 45
