@@ -17,11 +17,11 @@ for emotion = 1:6
 end
 
 
-trees_of_emotions = cell(1,6);
+trees_of_emotion = cell(1,6);
 %Create the decision trees for each emotion.
 for emotion = 1:6
-  trees_of_emotions{emotion} = decision_tree_learning(examples,attribs,theEmotions{emotion});
-  DrawDecisionTree(trees_of_emotions{emotion},emolab2str(emotion));
+  trees_of_emotion{emotion} = decision_tree_learning(examples,attribs,theEmotions{emotion});
+  DrawDecisionTree(trees_of_emotion{emotion},emolab2str(emotion));
 end
 
 %Start evaluating the learning algorithm using ten-fold cross validation.

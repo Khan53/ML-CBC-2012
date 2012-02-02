@@ -1,9 +1,6 @@
 function [tree] = decision_tree_learning(examples,attribs,targets)
 %DECISION_TREE_LEARNING - creates a decision tree through the use of the ID3 algorithm
 %
-% AUTHOR:	A. Khan, G. Eracleous, G. Jones, V. Kriauciukas
-% CREATED:	31012012
-%
 %IN:  examples: set of training examples [N x 45]
 %     attribs: 	list of attributes
 %     targets:	target labels for the training examples [N x 1]

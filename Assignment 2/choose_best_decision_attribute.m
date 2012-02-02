@@ -2,9 +2,6 @@ function [bestDecisionAttribute] = choose_best_decision_attribute(attribs,exampl
 %CHOOSE_BEST_DECISION_ATTRIBUTE - measuring how 'good' each attribute in the set is via ID3 algorithm,
 %				  this returns the attribute with the largest information gain.
 %
-% AUTHOR:	A. Khan, G. Eracleous, G. Jones, V. Kriauciukas
-% CREATED:	31012012
-%
 %IN:  attribs: 	list of attributes
 %     examples: set of training examples with X columns less than or equal to 45
 %     targets:	target labels for the training examples
@@ -38,9 +35,6 @@ function [entropy] = calculate_entropy(pos,neg)
 %CALCULATE_ENTROPY - Calculating the information contained using a training set
 %		     with positive and negative examples.
 %
-% AUTHOR:	A. Khan, G. Eracleous, G. Jones, V. Kriauciukas
-% CREATED:	31012012
-%
 %IN:  pos: value of positive examples in the training set
 %     neg: value of negative examples in the training set
 %OUT: entropy:	value characterizing the impurity of the collection of examples
@@ -55,9 +49,6 @@ end
 function [remainder] = calculate_remainder(positive,negative,attributeIndex,attribs,examples,targets)
 %CALCULATE_REMAINDER - Information requirement from testing an attribute, 'attributeIndex'. Dividing
 %		       the training set into subsets given that the attributes are binary.
-%
-% AUTHOR:	A. Khan, G. Eracleous, G. Jones, V. Kriauciukas
-% CREATED:	31012012
 %
 %IN:  positive: value of positive examples in the training set
 %     negative: value of negative examples in the training set
