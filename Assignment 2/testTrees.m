@@ -9,7 +9,6 @@ for example=1:noExamples
     for emotion = 1:6
         predictions(emotion) = classify_example( T{emotion}, x(example, :));
     end
-<<<<<<< HEAD
     emotionIndex = find(predictions == 1, 1, 'first');
     
     %The following lines of code MUST BE changed. For now
@@ -20,10 +19,6 @@ for example=1:noExamples
     else
         y(example) = 1;
     end
-=======
-    %x(example, :);
-    y = predictions;
->>>>>>> 1b8af15de7ba7130bca1e21ee20b0dafe5e545f9
 end
 
 
