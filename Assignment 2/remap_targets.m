@@ -1,5 +1,5 @@
 function [targets] = remap_targets(targets,emotion)
-%REMAP_TRAGETS - The 'targets' vector is restructured so that a '1' is being held
+%REMAP_TARGETS - The 'targets' vector is restructured so that a '1' is being held
 %		 for a particular emotion and '0' everywhere else.
 %
 %IN:  targets: target labels for the training examples [N x 1]

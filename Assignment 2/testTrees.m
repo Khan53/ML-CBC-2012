@@ -8,8 +8,8 @@ for example=1:noExamples
     for emotion = 1:6
         predictions(emotion) = classify_example( T{emotion}, x(example, :));
     end
-    x(example, :)
-    y = predictions
+    %x(example, :);
+    y = predictions;
 end
 
 function [ prediction ] = classify_example( T, example )
