@@ -1,4 +1,5 @@
 function [bestDecisionAttribute] = choose_best_decision_attribute(attribs,examples,targets)
+
 %CHOOSE_BEST_DECISION_ATTRIBUTE - measuring how 'good' each attribute in the set is via ID3 algorithm,
 %this returns the attribute with the largest information gain.
 %
@@ -61,7 +62,7 @@ function [remainder] = calculate_remainder(positive,negative,attributeIndex,attr
   remainder = 0;
   %The attributes are binary, they will hold only two values.
   for possibleValue = 0:1
-    %First find the rows of 'examples' that correpsond to the column of the attribute, 'atribIndex'.
+    %First find the rows of 'examples' that correspond to the column of the attribute, 'atribIndex'.
     %having value 'possibleValue'. Secondly, create the target vector with the relevant rows.
     attributeIndexSet = find(examples(:,attribs(attributeIndex)) == possibleValue);
     reducedTargets = targets(attributeIndexSet);
