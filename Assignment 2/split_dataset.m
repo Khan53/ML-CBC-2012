@@ -4,8 +4,8 @@ function [ trainSet, testSet ] = split_dataset( i, examples, targets )
 range = length(targets);
 interval = range/10;
 
-firstTestSample = i*interval + 1
-lastTestSample = firstTestSample + interval - 1
+firstTestSample = i*interval + 1;
+lastTestSample = firstTestSample + interval - 1;
 
 testSet.examples = examples(firstTestSample:lastTestSample, :);
 testSet.targets = targets(firstTestSample:lastTestSample);

@@ -21,10 +21,15 @@ trees_of_emotions = cell(1,6);
 %Create the decision trees for each emotion.
 for emotion = 1:6
   trees_of_emotions{emotion} = decision_tree_learning(examples,attribs,theEmotions{emotion});
-  DrawDecisionTree(trees_of_emotions{emotion},emolab2str(emotion));
+  %DrawDecisionTree(trees_of_emotions{emotion},emolab2str(emotion));
 end
 
 %Start evaluating the learning algorithm using ten-fold cross validation.
-for i = 0:9
-    [trainSet, testSet] = split_dataset(i, examples, targets)
+for i = 0:0
+    [trainSet, testSet] = split_dataset(i, examples, targets);
+    for emotion = 1:6
+        theEmotions{emotion} = remap_targets(trainSet.targets,emotion);
+        trees_of_emotions{emotion} = decision_tree_learning(trainSet.examples,attribs,theEmotions{emotion});
+    end
+    y = testTrees(trees_of_emotions, testSet.examples);
 end
