@@ -8,18 +8,25 @@ function [confusionMatrix] = generate_confusion_matrix(predictions,actualTargets
   
   %Initializations
   noPredictions = size(predictions,1);				%This should be 6, for our task has 6 emotions.
-  confusionMatrix = zeros(noPredictions, noPredictions);	%The 6 x 6 matrix to construct
+  confusionMatrix = zeros(6, 6);	%The 6 x 6 matrix to construct
 
   %For each of our examples,
   %atain the emotion that is accurate,
   %populate the confusion matrix in dependence of matching an accurate emotion to the predicted.
-  for index = 1:length(actualTargets)
-    actualEmotion = actualTargets(index);
-    if (predictions(actualEmotion,index) == 1)
-      confusionMatrix(actualEmotion,actualEmotion) = confusionMatrix(actualEmotion,actualEmotion) + 1;
-    else
-      predictedEmotion = find(predictions(:,index) == 1);	%the predicted emotion
-      confusionMatrix(actualEmotion,predictedEmotion) = confusionMatrix(actualEmotion,predictedEmotion) + 1;
+%   for index = 1:length(actualTargets)
+%     actualEmotion = actualTargets(index);
+%     if (predictions(actualEmotion,index) == 1)
+%       confusionMatrix(actualEmotion,actualEmotion) = confusionMatrix(actualEmotion,actualEmotion) + 1;
+%     else
+%       predictedEmotion = find(predictions(:,index) == 1);	%the predicted emotion
+%       confusionMatrix(actualEmotion,predictedEmotion) = confusionMatrix(actualEmotion,predictedEmotion) + 1;
+%     end
+%   end
+[numRowsPredicted, numColsPredicted] = size(predictions);
+for i = 1:numColsPredicted
+    for j=1:numRowsPredicted
+        confusionMatrix(actualTargets(j, i), predictions(j, i)) ...
+        = confusionMatrix(actualTargets(j, i), predictions(j, i)) + 1;
     end
-  end
+end
 end
