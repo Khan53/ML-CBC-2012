@@ -3,14 +3,24 @@ function [ y ] = testTrees( T, x )
 %   Detailed explanation goes here
 
 noExamples = size(x,1);
+y = zeros(noExamples, 1);
 for example=1:noExamples
     predictions = zeros(6, 1);
     for emotion = 1:6
         predictions(emotion) = classify_example( T{emotion}, x(example, :));
     end
-    x(example, :)
-    y = predictions
+    emotionIndex = find(predictions == 1, 1, 'first');
+    
+    %The following lines of code MUST BE changed. For now
+    %assume that if this example is unclassified then assign 
+    %it a defualt emotion i.e. emotion = 1. 
+    if (length(emotionIndex)>0)
+        y(example) = emotionIndex;
+    else
+        y(example) = 1;
+    end
 end
+
 
 function [ prediction ] = classify_example( T, example )
 %UNTITLED2 Summary of this function goes here
