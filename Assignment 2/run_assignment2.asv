@@ -24,7 +24,7 @@ end
 %y - predicted emotion labels (targets) from testSets 10x10, where each column
 %is a different test.
 y = [];
-%given target labels for each test set (organised as y above)
+%
 targetsMatrix = [];
 for i = 0:9
     [trainSet, testSet] = split_dataset(i, examples, targets);
