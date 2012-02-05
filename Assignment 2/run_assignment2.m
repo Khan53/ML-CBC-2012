@@ -38,6 +38,11 @@ for i = 0:9
     actual_targets_set = cat(2,actual_targets_set,testSet.targets); %adds a column for the target's matrix
 end
 confusionMatrix = generate_confusion_matrix(predicted_targets_set,actual_targets_set);
+%plot the matrix
 plot_confusion_matrix(confusionMatrix);
-
-
+%calculate recall and precision
+rp = calculate_recall_precision(confusionMatrix);
+%calculate f_measure
+f_measure = calculate_f_measure(rp,1);
+%plot the variables
+plot_stats(rp,f_measure);
