@@ -1,3 +1,4 @@
+clear
 %Add current directory and all subdirectories to MATLAB search path
 addpath(genpath(pwd));
 
@@ -17,7 +18,7 @@ trees_of_emotion = cell(1,6);
 for emotion = 1:6
   theEmotions{emotion} = remap_targets(targets,emotion);
   trees_of_emotion{emotion} = decision_tree_learning(examples,attribs,theEmotions{emotion});
-  DrawDecisionTree(trees_of_emotion{emotion},emolab2str(emotion));
+  %DrawDecisionTree(trees_of_emotion{emotion},emolab2str(emotion));
 end
 
 %Start evaluating the learning algorithm using ten-fold cross validation.
@@ -37,5 +38,6 @@ for i = 0:9
     actual_targets_set = cat(2,actual_targets_set,testSet.targets); %adds a column for the target's matrix
 end
 confusionMatrix = generate_confusion_matrix(predicted_targets_set,actual_targets_set);
+plot_confusion_matrix(confusionMatrix);
 
 
