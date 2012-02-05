@@ -1,6 +1,6 @@
 function[] = plot_stats(rp,f_measure);
 
-dat = cat(2,rp,f_measure)
+dat = cat(2,rp,f_measure);
 
 rcount = size(rp,1);
 rnames = cell(rcount);
