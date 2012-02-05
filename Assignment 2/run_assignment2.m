@@ -4,6 +4,8 @@ addpath(genpath(pwd));
 
 %Load data for assignment 2 - Decision Trees
 attribs = 1:45;
+%examples - Nx45 array of AUs present for each example
+%targets - Nx1 array of emotion (1-6) displayed in each example
 [examples,targets] = loaddata('cleandata_students.txt');
 
 
