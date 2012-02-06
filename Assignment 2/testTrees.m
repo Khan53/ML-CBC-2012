@@ -1,6 +1,9 @@
 function [ y ] = testTrees( T, x )
-%UNTITLED2 Summary of this function goes here
+%TESTTREE  Summary of this function goes here
 %   Detailed explanation goes here
+%IN:  T: 6 decision trees
+%     x: sparse, binary featureset of aus [N x 45]
+%OUT: y: emotion labels
 
 noExamples = size(x,1);
 y = zeros(noExamples, 1);

@@ -1,6 +1,6 @@
 Assignmnet 2:
 	-All files in one directory
 	-Execute in MATLAB 'run_assignment2'
-	run_assignment2.m calls the main decision tree algorithm and its associated functions.
+	-run_assignment2.m calls the main decision tree algorithm and its associated functions.
 
 I'm sure this README can be alot better :)
