@@ -9,33 +9,38 @@ noExamples = size(x,1);
 y = zeros(noExamples, 1);
 for example=1:noExamples
     predictions = zeros(6, 1);
+    depth = zeros(6, 1);
     for emotion = 1:6
-        predictions(emotion) = classify_example( T{emotion}, x(example, :));
+        [depth(emotion), predictions(emotion)] = classify_example( T{emotion}, x(example, :));
     end
-    emotionIndex = find(predictions == 1, 1, 'first');
     
-    %The following lines of code MUST BE changed. For now
-    %assume that if this example is unclassified then assign 
-    %it a defualt emotion i.e. emotion = 1. 
-    if (length(emotionIndex)>0)
+    emotionIndex = find(predictions == 1);
+    if (length(emotionIndex) == 1) 
         y(example) = emotionIndex;
+    elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
+        [~, deepestEmotion] = max(depth(:)); 
+        y(example) = deepestEmotion;
     else
-        y(example) = 1;
+        [~, deepestEmotion] = min(depth(:)); 
+        y(example) = deepestEmotion;
     end
 end
 
 
-function [ prediction ] = classify_example( T, example )
+function [ depth, prediction ] = classify_example( T, example )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 
 if (isempty(T.kids))
     prediction = T.class;
+    depth = 1;
 else
     if (example(T.op) == 0)
-        prediction = classify_example(T.kids{1}, example);
+        [depth, prediction] = classify_example(T.kids{1}, example);
+        depth = depth + 1;
     else
-        prediction = classify_example(T.kids{2}, example);
+        [depth, prediction] = classify_example(T.kids{2}, example);
+        depth = depth + 1;
     end
 end
 

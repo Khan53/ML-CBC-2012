@@ -11,18 +11,7 @@ function [confusionMatrix] = generate_confusion_matrix(predictions,actualTargets
   rownum = max(max(actualTargets)); %Range of emotions in actual targets
   colnum = max(max(predictions)); %Range of emotions in predicted targets
   confusionMatrix = zeros(rownum, colnum); %Constructs confusion matrix  for N emotions
-  %For each of our examples,
-  %atain the emotion that is accurate,
-  %populate the confusion matrix in dependence of matching an accurate emotion to the predicted.
-%   for index = 1:length(actualTargets)
-%     actualEmotion = actualTargets(index);
-%     if (predictions(actualEmotion,index) == 1)
-%       confusionMatrix(actualEmotion,actualEmotion) = confusionMatrix(actualEmotion,actualEmotion) + 1;
-%     else
-%       predictedEmotion = find(predictions(:,index) == 1);	%the predicted emotion
-%       confusionMatrix(actualEmotion,predictedEmotion) = confusionMatrix(actualEmotion,predictedEmotion) + 1;
-%     end
-%   end
+
 [numRowsPredicted, numColsPredicted] = size(predictions);
 for i = 1:numColsPredicted
     for j=1:numRowsPredicted

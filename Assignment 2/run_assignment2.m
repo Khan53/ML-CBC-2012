@@ -18,7 +18,7 @@ trees_of_emotion = cell(1,6);
 for emotion = 1:6
   theEmotions{emotion} = remap_targets(targets,emotion);
   trees_of_emotion{emotion} = decision_tree_learning(examples,attribs,theEmotions{emotion});
-  DrawDecisionTree(trees_of_emotion{emotion},emolab2str(emotion));
+  %DrawDecisionTree(trees_of_emotion{emotion},emolab2str(emotion));
 end
 
 %Start evaluating the learning algorithm using ten-fold cross validation.
