@@ -8,7 +8,7 @@ for i = 1:rcount,
     rnames{i} = emolab2str(i);
 end
 
-cnames = {'Recall','Precision','F-Measure'};
+cnames = {'Error Measure','Recall','Precision','F-Measure'};
 f = figure('Position',[200 200 650 170]);
 t = uitable('Parent', f,'Data',dat,'ColumnName',cnames,... 
             'RowName',rnames);
