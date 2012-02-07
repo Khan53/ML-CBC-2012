@@ -29,9 +29,13 @@ function [ depth, prediction ] = classify_example( T, example, depth )
 
 if (isempty(T.kids))
     prediction = T.class;
-    depth = 1;
+    depth = depth;
 else
-    [depth, prediction] = classify_example(T.kids{example(T.op) + 1}, example, depth+1);
+    if (example(T.op) == 0)
+        [depth, prediction] = classify_example(T.kids{1}, example, depth+1);
+    else
+        [depth, prediction] = classify_example(T.kids{2}, example, depth+1);
+    end
 end
 
 function [ singleEmotion ] = pickOneEmotion( predictions, depth )
@@ -44,7 +48,6 @@ function [ singleEmotion ] = pickOneEmotion( predictions, depth )
 % assigns the class with the deepest emotion matched with our example. By
 % default we use the deepest technique but you can comment out that line
 % and uncomment the one using the random method to comapre the results. 
-
 emotionIndex = find(predictions == 1);
 if (length(emotionIndex) == 1) 
     singleEmotion = emotionIndex;
@@ -53,7 +56,6 @@ elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
     for i =1:length(emotionIndex)
         positiveDepth = [positiveDepth depth(emotionIndex(i))];
     end
-    positiveDepth
     singleEmotion = pickDeepest(positiveDepth);
     %singleEmotion = pickRandom(emotionIndex);
 else
