@@ -3,6 +3,5 @@ function [majorityValue] = majority_value(targets)
 %
 %IN:  targets:	target labels for the training examples [N x 1]
 %OUT: maj_val:	resulting value most frequent in 'targets'
-
   majorityValue = mode(targets);		%Using mode returns the element appearing most frequently
 end
