@@ -20,7 +20,7 @@ for example=1:noExamples
     elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
         [~, deepestEmotion] = max(depth(:)); 
         y(example) = deepestEmotion;
-    else
+    else %If none emotion has been assigned
         [~, deepestEmotion] = min(depth(:)); 
         y(example) = deepestEmotion;
     end
