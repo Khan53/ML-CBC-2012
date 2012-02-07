@@ -13,19 +13,8 @@ for example=1:noExamples
     for emotion = 1:6
         [depth(emotion), predictions(emotion)] = classify_example( T{emotion}, x(example, :), 0);
     end
-    
-    emotionIndex = find(predictions == 1);
-    if (length(emotionIndex) == 1) 
-        y(example) = emotionIndex;
-    elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
-        [~, deepestEmotion] = max(depth(:)); 
-        y(example) = deepestEmotion;
-    else
-        [~, deepestEmotion] = max(depth(:)); 
-        y(example) = deepestEmotion;
-    end
+    y(example) = pickOneEmotion(predictions, depth);
 end
-
 
 function [ depth, prediction ] = classify_example( T, example, depth )
 %UNTITLED2 Summary of this function goes here
@@ -38,3 +27,21 @@ else
     [depth, prediction] = classify_example(T.kids{example(T.op) + 1}, example, depth+1);
 end
 
+function [ singleEmotion ] = pickOneEmotion( predictions, depth )
+
+emotionIndex = find(predictions == 1);
+if (length(emotionIndex) == 1) 
+    singleEmotion = emotionIndex;
+elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
+    singleEmotion = pickRandom(emotionIndex);%pickDeepest(depth);
+else
+    singleEmotion = pickRandom(find(predictions == 0));%pickDeepest(depth);
+end
+
+function [randomIndex] = pickRandom(predictions)
+range = length(predictions);
+randomNo = randi(range, 1);
+randomIndex = predictions(randomNo);
+
+function [deepestEmotion] = pickDeepest(depth)
+[~, deepestEmotion] = max(depth(:)); 
