@@ -33,9 +33,9 @@ emotionIndex = find(predictions == 1);
 if (length(emotionIndex) == 1) 
     singleEmotion = emotionIndex;
 elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
-    singleEmotion = pickRandom(emotionIndex);%pickDeepest(depth);
+    singleEmotion = pickDeepest(depth);%pickRandom(emotionIndex);
 else
-    singleEmotion = pickRandom(find(predictions == 0));%pickDeepest(depth);
+    singleEmotion = pickDeepest(depth);%pickRandom(find(predictions == 0));
 end
 
 function [randomIndex] = pickRandom(predictions)
