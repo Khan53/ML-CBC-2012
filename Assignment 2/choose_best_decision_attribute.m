@@ -21,7 +21,6 @@ function [bestDecisionAttribute] = choose_best_decision_attribute(attribs,exampl
   for i = 1:length(attribs)
     remainder = calculate_remainder(positive,negative,i,attribs,examples,targets);
     attributeInfoGain = originalInfoGain - remainder;
-    %USE 'GREATER THAN' OR USE 'GREATER THAN AND EQUAL' IN BELOW STATEMENT?...
     if (attributeInfoGain > maxGain)			%Check to retain the attribute with the largest information gain.
       maxGain = attributeInfoGain;
       indexOfMaxGain = i;
@@ -66,6 +65,7 @@ function [remainder] = calculate_remainder(positive,negative,attributeIndex,attr
     %having value 'possibleValue'. Secondly, create the target vector with the relevant rows.
     attributeIndexSet = find(examples(:,attribs(attributeIndex)) == possibleValue);
     reducedTargets = targets(attributeIndexSet);
+
     %Calculate the remainder contributed by the current attribute being tested.
     pos = length(reducedTargets(reducedTargets == 1));
     neg = length(reducedTargets) - pos;
