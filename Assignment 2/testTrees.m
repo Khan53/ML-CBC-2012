@@ -59,11 +59,11 @@ elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
     for i =1:length(emotionIndex)
         positiveDepth = [positiveDepth depth(emotionIndex(i))];
     end
-    %singleEmotion = pickDeepest(positiveDepth);
-    singleEmotion = pickRandom(emotionIndex);
+    singleEmotion = pickDeepest(positiveDepth);
+    %singleEmotion = pickRandom(emotionIndex);
 else
-    %singleEmotion = pickDeepest(depth);
-    singleEmotion = pickRandom(find(predictions == 0));
+    singleEmotion = pickDeepest(depth);
+    %singleEmotion = pickRandom(find(predictions == 0));
 end
 
 function [randomIndex] = pickRandom(predictions)
