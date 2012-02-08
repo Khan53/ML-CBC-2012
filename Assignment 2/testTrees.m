@@ -32,7 +32,7 @@ if (isempty(T.kids))
     depth = depth;
 else
     if (example(T.op) == 0)
-        [depth, prediction] = classify_example(T.kids{1}, example, depth+1);
+        [depth, prediction] = classify_example(T.kids{1}, example, depth);
     else
         [depth, prediction] = classify_example(T.kids{2}, example, depth+1);
     end
