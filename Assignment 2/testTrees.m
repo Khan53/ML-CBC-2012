@@ -1,4 +1,5 @@
 function [ y ] = testTrees( T, x )
+%TESTTREE
 % This function takes as inputs the decsion trees for each emotion and the 
 % set of test data. Firstly, it iterates over all the examples in the test 
 % set and for each one it calls the classify_example method. It recursively
@@ -9,7 +10,9 @@ function [ y ] = testTrees( T, x )
 % the vector. If a tie or an ambiguity occured then this function employs one 
 % of two methods to resolve them. These methods are explained in detail in 
 % the comments of that function. 
-
+%IN:  T: 6 decision trees
+%     x: sparse, binary featureset of aus [N x 45]
+%OUT: y: emotion labels
 noExamples = size(x,1);
 y = zeros(noExamples, 1);
 for example=1:noExamples
@@ -56,11 +59,11 @@ elseif (length(emotionIndex) > 0) %If more than one emotions have been assigned
     for i =1:length(emotionIndex)
         positiveDepth = [positiveDepth depth(emotionIndex(i))];
     end
-    singleEmotion = pickDeepest(positiveDepth);
-    %singleEmotion = pickRandom(emotionIndex);
+    %singleEmotion = pickDeepest(positiveDepth);
+    singleEmotion = pickRandom(emotionIndex);
 else
-    singleEmotion = pickDeepest(depth);
-    %singleEmotion = pickRandom(find(predictions == 0));
+    %singleEmotion = pickDeepest(depth);
+    singleEmotion = pickRandom(find(predictions == 0));
 end
 
 function [randomIndex] = pickRandom(predictions)
