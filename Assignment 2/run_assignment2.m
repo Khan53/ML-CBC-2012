@@ -14,7 +14,7 @@ attribs = 1:45;
 %predicted emotion labels (targets) from testSets 10x10, where each column
 %is a different test.
 predicted_targets_set = [];
-%given target labels for each test set (organised as y above)
+%given target labels for each test set
 actual_targets_set = [];
 trees_of_emotions = cell(1,6);
 for i = 0:9
@@ -24,6 +24,7 @@ for i = 0:9
     for emotion = 1:6
         theEmotions{emotion} = remap_targets(trainSet.targets,emotion);
         trees_of_emotions{emotion} = decision_tree_learning(trainSet.examples,attribs,theEmotions{emotion});
+	%DrawDecisionTree(trees_of_emotions{emotion},emolab2str(emotion));
     end
     predicted_targets_set = cat(2,predicted_targets_set,testTrees(trees_of_emotions, testSet.examples)); %adds a column for each example
     actual_targets_set = cat(2,actual_targets_set,testSet.targets); %adds a column for the target's matrix
