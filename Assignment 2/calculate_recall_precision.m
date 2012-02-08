@@ -11,5 +11,5 @@ matrix_sum = sum(sum(conf_matrix));
 for i = 1:dim,
     rp_rates(i,2) = (conf_matrix(i,i) / sum(conf_matrix(i,:))) * 100; % Recall rate
     rp_rates(i,3) = (conf_matrix(i,i) / sum(conf_matrix(:,i))) * 100; % Precision rate
-    rp_rates(i,1) = ((2*conf_matrix(i,i)+ matrix_sum - sum(conf_matrix(i,:)) - sum(conf_matrix(:,i))) / matrix_sum ) * 100; % Error estimate
+    rp_rates(i,1) = 100 - (((2*conf_matrix(i,i)+ matrix_sum - sum(conf_matrix(i,:)) - sum(conf_matrix(:,i))) / matrix_sum ) * 100); % Error estimate
 end
