@@ -24,7 +24,6 @@ for i = 0:9
     for emotion = 1:6
         theEmotions{emotion} = remap_targets(trainSet.targets,emotion);
         trees_of_emotions{emotion} = decision_tree_learning(trainSet.examples,attribs,theEmotions{emotion});
-	%DrawDecisionTree(trees_of_emotions{emotion},emolab2str(emotion));
     end
     predicted_targets_set = cat(2,predicted_targets_set,testTrees(trees_of_emotions, testSet.examples)); %adds a column for each example
     actual_targets_set = cat(2,actual_targets_set,testSet.targets); %adds a column for the target's matrix
