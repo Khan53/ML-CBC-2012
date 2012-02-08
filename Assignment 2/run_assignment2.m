@@ -14,7 +14,7 @@ attribs = 1:45;
 %predicted emotion labels (targets) from testSets 10x10, where each column
 %is a different test.
 predicted_targets_set = [];
-%given target labels for each test set (organised as y above)
+%given target labels for each test set
 actual_targets_set = [];
 trees_of_emotions = cell(1,6);
 for i = 0:9
