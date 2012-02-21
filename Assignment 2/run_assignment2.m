@@ -30,7 +30,7 @@ for i = 0:9
 end
 
 %calculate and plot confusion matrix
-confusionMatrix = generate_confusion_matrix(predicted_targets_set,actual_targets_set);
+confusionMatrix = generate_confusion_matrix(predicted_targets_set, actual_targets_set);
 plot_confusion_matrix(confusionMatrix);
 
 %calculate recall and precision

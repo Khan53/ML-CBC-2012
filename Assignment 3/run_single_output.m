@@ -11,6 +11,7 @@ addpath(genpath(pwd));
 %examples and targets transformed for neural nets
 [P,T] = ANNdata(examples,targets);
 
+confusionMatrices = cell(1,10);
 for i = 0:9
     [trainSet, testSet] = split_dataset(i, examples, targets);
 
@@ -19,10 +20,15 @@ for i = 0:9
     [testSet.examples, testSet.targets] = ANNdata(testSet.examples, testSet.targets);    
     neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets);
     
-    classifications = zeros(10, 6);
+    predictions = [];
+    actual_targets_set = [];
     for emotion = 1:6
-        classifications(:, emotion) = testANN(neuralNets(emotion).net, testSet.examples)
+        predictions = cat(2,predictions, testANN(neuralNets(emotion).net, testSet.examples)); %adds a column for each example
     end
-    testSet.targets
+    actual_targets_set = cat(2,actual_targets_set, testSet.targets'); %adds a column for the target's matrix
+    confusionMatrices{(i+1)} = create_confusion_matrix(predictions, actual_targets_set);
 end
+
+computeAverageMatrix(confusionMatrices)
+
 
