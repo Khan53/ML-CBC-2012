@@ -1,4 +1,4 @@
-function neualNets = buildSingleOutputNeuralNets(P, T)
+function neuralNets = buildSingleOutputNeuralNets(P, T)
 
   for i=1:6
     %Setup parameters
@@ -12,7 +12,7 @@ function neualNets = buildSingleOutputNeuralNets(P, T)
     network.performFcn = performanceFunction; 
     network.trainParam.epochs = epochs;
     network = configure(network, P, T);
-    neualNets(i).net = train(network, P, T);
+    neuralNets(i).net = train(network, P, T);
   end
   
 %   for i=1:6

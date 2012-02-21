@@ -1,11 +1,11 @@
 function [ matrix ] = create_confusion_matrix(predictions, targets)
-
+predictions
+targets
 %Transform targets into emotion indices
 for i=1:size(targets, 1)
     targets(i, :) = NNout2labels(targets(i, :));
 end
-    
-assert(isequal(size(predictions), size(targets)));
+targets    
 
 [N, M] = size(predictions);
 matrix = zeros(6,6);
