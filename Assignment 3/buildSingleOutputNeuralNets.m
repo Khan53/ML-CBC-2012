@@ -6,7 +6,7 @@ function neuralNets = buildSingleOutputNeuralNets(P, T)
     trainingFunction = 'trainlm'; 
     performanceFunction = 'mse';
     epochs = 100;
-
+    remap_targets(T, i);
     network = feedforwardnet(hiddenLayers);
     network.trainFcn = trainingFunction;
     network.performFcn = performanceFunction; 
