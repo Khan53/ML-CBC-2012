@@ -14,8 +14,6 @@ neuralNets = buildSingleOutputNeuralNets(P,T);
 neuralNet = buildMultipleOutputNeuralNet(P,T);
 
 
-
-
 %  %Start evaluating the learning algorithm using ten-fold cross validation.
 %  %predicted emotion labels (targets) from testSets 10x10, where each column
 %  %is a different test.
