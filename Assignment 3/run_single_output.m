@@ -29,6 +29,11 @@ for i = 0:9
     confusionMatrices{(i+1)} = create_confusion_matrix(predictions, actual_targets_set);
 end
 
-computeAverageMatrix(confusionMatrices)
-
+avgMatrix = computeAverageMatrix(confusionMatrices);
+%calculate recall and precision
+rp = calculate_recall_precision(avgMatrix);
+%calculate f_measure
+f_measure = calculate_f_measure(rp,1);
+%plot the variables
+plot_stats(rp,f_measure);
 
