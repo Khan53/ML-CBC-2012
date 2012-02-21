@@ -19,6 +19,10 @@ for i = 0:9
     [testSet.examples, testSet.targets] = ANNdata(testSet.examples, testSet.targets);    
     neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets);
     
-    classifications = testBinaryNetworks(neuralsNets, testData);
+    classifications = zeros(10, 6);
+    for emotion = 1:6
+        classifications(:, emotion) = testANN(neuralNets(emotion).net, testSet.examples)
+    end
+    testSet.targets
 end
 
