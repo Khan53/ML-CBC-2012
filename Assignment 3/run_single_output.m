@@ -14,16 +14,21 @@ for i = 0:9
 
     %Transform data 
     [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
-    [testSet.examples, testSet.targets] = ANNdata(testSet.examples, testSet.targets);    
+    %[testSet.examples, testSet.targets] = ANNdata(testSet.examples, testSet.targets);    
     neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets);
     
-    predictions = [];
-    for emotion = 1:6
-        predictions = cat(2,predictions, testANN(neuralNets(emotion).net, testSet.examples)); 
-    end
-    predictions
-    testSet.targets'
-    confusionMatrices{(i+1)} = create_confusion_matrix(predictions, testSet.targets');
+    %predictions = [];
+    classifications = zeros(10, 1);
+    for index=1:10
+        networkClassifications = zeros(6, 1);
+        example = testSet.examples(index, :)';
+        for emotion = 1:6
+            networkClassifications(emotion) = sim(neuralNets{emotion}, example);
+            %predictions = cat(2,predictions, testANN(neuralNets(emotion).net, testSet.examples')); 
+        end
+        classifications(index) = NNout2labels(networkClassifications);
+    end 
+    confusionMatrices{(i+1)} = create_confusion_matrix(classifications, testSet.targets);
 end
 
 avgMatrix = computeAverageMatrix(confusionMatrices);

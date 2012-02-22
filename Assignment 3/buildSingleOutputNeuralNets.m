@@ -1,7 +1,6 @@
 function neuralNets = buildSingleOutputNeuralNets(P, T)
-
+  neuralNets = cell(6, 1);
   for i=1:6
-      
     targets = T(i, :);
 
     %Setup parameters
@@ -25,7 +24,7 @@ function neuralNets = buildSingleOutputNeuralNets(P, T)
     network.divideParam.trainRatio = trainRatio;
     network.divideParam.valRatio = validationRatio;
     network.divideParam.testRatio = testRatio;
-    neuralNets(i).net = train(network, P, targets);
+    [neuralNets{i}, ~] = train(network, P, targets);
   end
   
 %   for i=1:6
