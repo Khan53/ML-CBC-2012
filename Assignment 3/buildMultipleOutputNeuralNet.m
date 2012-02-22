@@ -1,17 +1,28 @@
-function neuralNet = buildMultipleOutputNeuralNet(P, T)
+function neuralNet = buildMultipleOutputNeuralNet(P, T, generalizationMethod)
 
     %Setup parameters
     hiddenLayers = 2;
     trainingFunction = 'trainlm'; 
     performanceFunction = 'mse';
     epochs = 100;
-
-    network = feedforwardnet(hiddenLayers);
+    
+    if strcmpi(generalizationMethod, 'regularization')        
+        network = feedforwardnet(hiddenLayers, 'trainbr' );
+        network.divideFcn = '';
+    elseif strcmpi(generalizationMethod, 'earlystop')
+        network = feedforwardnet(hiddenLayers);
+        network.divideFcn = 'dividerand';
+        network.divideMode = 'sample';
+        network.divideParam.trainRatio = 0.7;
+        network.divideParam.valRatio = 0.3;
+        network.divideParam.testRatio = 0.0;
+    end
+ 
     network.trainFcn = trainingFunction;
     network.performFcn = performanceFunction; 
     network.trainParam.epochs = epochs;
     network = configure(network, P, T);
-    neuralNet = train(network, P, T);
+    neuralNet = trainbr(network, P, T);
 
 %   neuralNet = feedforwardnet(30,'trainscg');
 %   neuralNet = configure(neuralNet,P,T); 

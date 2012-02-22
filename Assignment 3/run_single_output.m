@@ -14,7 +14,7 @@ for i = 0:9
 
     %Transform data 
     [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
-    neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets);
+    neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets, 'earlystop');
     
 %     predictions = zeros(10, 1);
 %     for index=1:10

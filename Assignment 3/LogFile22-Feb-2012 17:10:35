@@ -1,0 +1,3 @@
+22-Feb-2012 17:10:35 - Iteration Counter: 1, Train Function: trainbr, Layer Number: 2, Layer Size: 22, Epochs Number: 150, FMeasure: 0.93481
+22-Feb-2012 17:17:08 - Iteration Counter: 2, Train Function: trainbr, Layer Number: 3, Layer Size: 22, Epochs Number: 150, FMeasure: 0.92593
+22-Feb-2012 17:29:21 - Iteration Counter: 3, Train Function: trainbr, Layer Number: 4, Layer Size: 22, Epochs Number: 150, FMeasure: 0.86037
