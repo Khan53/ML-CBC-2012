@@ -8,9 +8,6 @@ addpath(genpath(pwd));
 %targets - Nx1 array of an emotion (1-6) represented for each example
 [examples,targets] = loaddata('cleandata_students.txt');
 
-%examples and targets transformed for neural nets
-[P,T] = ANNdata(examples,targets);
-
 confusionMatrices = cell(1,10);
 for i = 0:9
     [trainSet, testSet] = split_dataset(i, examples, targets);
@@ -21,12 +18,12 @@ for i = 0:9
     neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets);
     
     predictions = [];
-    actual_targets_set = [];
     for emotion = 1:6
-        predictions = cat(2,predictions, testANN(neuralNets(emotion).net, testSet.examples)); %adds a column for each example
+        predictions = cat(2,predictions, testANN(neuralNets(emotion).net, testSet.examples)); 
     end
-    actual_targets_set = cat(2,actual_targets_set, testSet.targets'); %adds a column for the target's matrix
-    confusionMatrices{(i+1)} = create_confusion_matrix(predictions, actual_targets_set);
+    predictions
+    testSet.targets'
+    confusionMatrices{(i+1)} = create_confusion_matrix(predictions, testSet.targets');
 end
 
 avgMatrix = computeAverageMatrix(confusionMatrices);

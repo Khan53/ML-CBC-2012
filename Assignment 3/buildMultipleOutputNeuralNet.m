@@ -1,7 +1,7 @@
 function neuralNet = buildMultipleOutputNeuralNet(P, T)
 
     %Setup parameters
-    hiddenLayers = 10;
+    hiddenLayers = 2;
     trainingFunction = 'trainlm'; 
     performanceFunction = 'mse';
     epochs = 100;

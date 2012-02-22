@@ -1,18 +1,31 @@
 function neuralNets = buildSingleOutputNeuralNets(P, T)
 
   for i=1:6
+      
+    targets = T(i, :);
+
     %Setup parameters
-    hiddenLayers = 10;
+    hiddenLayers = 2;
     trainingFunction = 'trainlm'; 
     performanceFunction = 'mse';
     epochs = 100;
-    remap_targets(T, i);
+    trainRatio = 0.85;
+    validationRatio = 0.15;
+    divideFunc = 'dividerand'; 
+    divideMode = 'sample'; 
+    testRatio = 0.0;
+    
     network = feedforwardnet(hiddenLayers);
     network.trainFcn = trainingFunction;
     network.performFcn = performanceFunction; 
     network.trainParam.epochs = epochs;
-    network = configure(network, P, T);
-    neuralNets(i).net = train(network, P, T);
+    network = configure(network, P, targets);
+    network.divideFcn = divideFunc;
+    network.divideMode = divideMode;
+    network.divideParam.trainRatio = trainRatio;
+    network.divideParam.valRatio = validationRatio;
+    network.divideParam.testRatio = testRatio;
+    neuralNets(i).net = train(network, P, targets);
   end
   
 %   for i=1:6

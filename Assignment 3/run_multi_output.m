@@ -21,6 +21,8 @@ for i = 0:9
     neuralNet = buildMultipleOutputNeuralNet(trainSet.examples, trainSet.targets);
     
     predictions = testANN(neuralNet, testSet.examples);
+    predictions
+    testSet.targets'
     confusionMatrices{(i+1)} = create_confusion_matrix(predictions, testSet.targets');
 end
 
