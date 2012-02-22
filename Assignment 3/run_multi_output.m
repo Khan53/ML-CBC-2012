@@ -17,13 +17,15 @@ for i = 0:9
 
     %Transform data 
     [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
-    [testSet.examples, testSet.targets] = ANNdata(testSet.examples, testSet.targets);    
     neuralNet = buildMultipleOutputNeuralNet(trainSet.examples, trainSet.targets);
     
-    predictions = testANN(neuralNet, testSet.examples);
-    predictions
-    testSet.targets'
-    confusionMatrices{(i+1)} = create_confusion_matrix(predictions, testSet.targets');
+    predictions = zeros(10, 1);
+    for index=1:10
+        example = testSet.examples(index, :)';
+        predictions(index) = NNout2labels(sim(neuralNet, example));
+    end 
+    confusionMatrices{(i+1)} = create_confusion_matrix(predictions, testSet.targets);
+    confusionMatrices{(i+1)}
 end
 
 avgMatrix = computeAverageMatrix(confusionMatrices);

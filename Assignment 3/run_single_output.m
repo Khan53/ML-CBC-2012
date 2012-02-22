@@ -14,7 +14,6 @@ for i = 0:9
 
     %Transform data 
     [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
-    %[testSet.examples, testSet.targets] = ANNdata(testSet.examples, testSet.targets);    
     neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets);
     
     predictions = zeros(10, 1);
