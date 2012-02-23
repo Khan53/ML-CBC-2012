@@ -1,5 +1,5 @@
 function [predictions] = testANN(network, testSet)
-    [noExamples, ~] = size(testSet.examples)
+    [noExamples, ~] = size(testSet.examples);
     multi_nets = false;
     if length(network) > 1
         multi_nets = true;
