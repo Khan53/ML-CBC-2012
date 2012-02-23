@@ -24,7 +24,8 @@ function [f_measures] = run_single_output()
 
         %calculate recall and precision for this fold
         rp = calculate_recall_precision(confusionMatrices{(i+1)});
-        %calculate f_measure for this fold
+        %calculate f_measure for this fold, averaging across all classes
+        %(emotions)
         f_measures(i+1, 1) = mean(calculate_f_measure(rp,1));
     end
 
