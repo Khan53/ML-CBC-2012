@@ -6,7 +6,7 @@ addpath(genpath(pwd));
 %Load data for assignment 3 - Artificial Neural Networks
 %examples - Nx45 array of AUs present for each example
 %targets - Nx1 array of an emotion (1-6) represented for each example
-[examples,targets] = loaddata('cleandata_students.txt');
+[examples,targets] = loaddata('noisydata_students.txt');
 
 %examples and targets transformed for neural nets
 [P,T] = ANNdata(examples,targets);
@@ -17,7 +17,7 @@ for i = 0:9
 
     %Transform data 
     [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
-    neuralNet = buildMultipleOutputNeuralNet(trainSet.examples, trainSet.targets, 'regularization');
+    neuralNet = buildMultipleOutputNeuralNet(trainSet.examples, trainSet.targets, 'earlystop');
     
 %     predictions = zeros(10, 1);
 %     for index=1:10

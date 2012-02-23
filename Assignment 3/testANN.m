@@ -1,10 +1,11 @@
 function [predictions] = testANN(network, testSet)
+    [noExamples, ~] = size(testSet.examples)
     multi_nets = false;
     if length(network) > 1
         multi_nets = true;
     end
-    predictions = zeros(10, 1);
-    for index=1:10
+    predictions = zeros(noExamples, 1);
+    for index=1:noExamples
         example = testSet.examples(index, :)';        
         if multi_nets
             individualClassifications = zeros(6, 1);

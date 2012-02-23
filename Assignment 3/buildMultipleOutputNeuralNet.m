@@ -1,7 +1,7 @@
 function neuralNet = buildMultipleOutputNeuralNet(P, T, generalizationMethod)
 
     %Setup parameters
-    hiddenLayers = 2;
+    hiddenLayers = 10;
     performanceFunction = 'mse';
     epochs = 100;
     
@@ -21,4 +21,4 @@ function neuralNet = buildMultipleOutputNeuralNet(P, T, generalizationMethod)
     network.performFcn = performanceFunction; 
     network.trainParam.epochs = epochs;
     network = configure(network, P, T);
-    neuralNet = trainbr(network, P, T);
+    neuralNet = train(network, P, T);
