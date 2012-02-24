@@ -8,10 +8,6 @@ function rp_rates = calculate_recall_precision(conf_matrix)
 dim = size(conf_matrix,1);
 rp_rates = zeros(dim,3);
 matrix_sum = sum(sum(conf_matrix));
-<<<<<<< HEAD
-conf_matrix
-=======
->>>>>>> 76e83b2b321217f4e3e9dd64aa212c83da9d54af
 for i = 1:dim,
     if sum(conf_matrix(i,:)) > 0
         rp_rates(i,2) = (conf_matrix(i,i) / sum(conf_matrix(i,:))) * 100; % Recall rate
