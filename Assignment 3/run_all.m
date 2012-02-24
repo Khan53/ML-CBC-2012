@@ -16,7 +16,7 @@ for i = 1:runs
     confusionMatrices_single{i} = avgMatrix_single;
 end
 
-avgMatrix = computeAverage(confusionMatrices_multi);
+avgMatrix = computeAverageMatrix(confusionMatrices_multi);
 %calculate recall and precision
 rp = calculate_recall_precision(avgMatrix);
 %calculate f_measure
@@ -26,7 +26,7 @@ plot_confusion_matrix(avgMatrix);
 %plot the variables
 plot_stats(rp,f_measure);
 
-avgMatrix = computeAverage(confusionMatrices_single);
+avgMatrix = computeAverageMatrix(confusionMatrices_single);
 %calculate recall and precision
 rp = calculate_recall_precision(avgMatrix);
 %calculate f_measure
