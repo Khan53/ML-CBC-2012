@@ -26,7 +26,7 @@ plot_confusion_matrix(avgMatrix);
 %plot the variables
 plot_stats(rp,f_measure);
 
-avgMatrix = computeAverageMatrix(confusionMatrices_single);
+avgMatrix = computeAverage(confusionMatrices_single);
 %calculate recall and precision
 rp = calculate_recall_precision(avgMatrix);
 %calculate f_measure
@@ -36,8 +36,8 @@ plot_confusion_matrix(avgMatrix);
 %plot the variables
 plot_stats(rp,f_measure);
 
-f_measures_multi = computeAverageFMeasure(all_f_measures_multi);
-f_measures_single = computeAverageFMeasure(all_f_measures_single);
+f_measures_multi = computeAverage(all_f_measures_multi);
+f_measures_single = computeAverage(all_f_measures_single);
 
 figure
 plot([1:10], f_measures_multi);
