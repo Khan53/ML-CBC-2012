@@ -9,6 +9,8 @@ function neuralNets = buildSingleOutputNeuralNets(P, T, generalizationMethod)
     performanceFunction = 'msereg';
     epochs = 100;
     
+    %Depending on the generalization method provided
+    %the code performs either earlystopping or BR
     if strcmpi(generalizationMethod, 'regularization')
         network = feedforwardnet([15,15], 'trainbr' );
         network.divideFcn = '';
@@ -31,4 +33,8 @@ function neuralNets = buildSingleOutputNeuralNets(P, T, generalizationMethod)
     network = configure(network, P, targets);
     
     [neuralNets{i}, ~] = train(network, P, targets);
+    
+    % save ANN
+    filename = strcat('SingleOutputNNforEmotion', int2str(i));
+    save(filename, 'network');
   end

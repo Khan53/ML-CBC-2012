@@ -12,13 +12,17 @@ function [f_measures,avgMatrix] = run_single_output()
     [noExamples, ~] = size(examples);
     confusionMatrices = cell(1,noExamples);
     f_measures = zeros(noExamples/10, 1);
+
+    %Performs 10-fold cross validation
     for i = 0:9
         [trainSet, testSet] = split_dataset(i, examples, targets);
 
-        %Transform data 
+        %Transforms data 
         [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
+        %Builds six single output neural nets
         neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets, 'regularization');
 
+        %Uses the trained nets to classify examples in the test set
         predictions = testANN(neuralNets, testSet);
         confusionMatrices{(i+1)} = create_confusion_matrix(predictions, testSet.targets);
 
@@ -30,12 +34,4 @@ function [f_measures,avgMatrix] = run_single_output()
     end
 
     avgMatrix = computeAverageMatrix(confusionMatrices);
-    %calculate recall and precision
-    %rp = calculate_recall_precision(avgMatrix);
-    %calculate f_measure
-    %f_measure = calculate_f_measure(rp,1);
-    %plot confusion matrix
-    %plot_confusion_matrix(avgMatrix);
-    %plot the variables
-    %plot_stats(rp,f_measure);
 end
