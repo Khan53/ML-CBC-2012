@@ -12,13 +12,17 @@ function [f_measures] = run_single_output()
     [noExamples, ~] = size(examples);
     confusionMatrices = cell(1,noExamples);
     f_measures = zeros(noExamples/10, 1);
+
+    %Performs 10-fold cross validation
     for i = 0:9
         [trainSet, testSet] = split_dataset(i, examples, targets);
 
-        %Transform data 
+        %Transforms data 
         [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
-        neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets, 'regularization');
+        %Builds six single output neural nets
+        neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets, 'earlystop');
 
+        %Uses the trained nets to classify examples in the test set
         predictions = testANN(neuralNets, testSet);
         confusionMatrices{(i+1)} = create_confusion_matrix(predictions, testSet.targets);
 

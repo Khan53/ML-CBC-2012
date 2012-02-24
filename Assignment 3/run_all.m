@@ -4,6 +4,7 @@ addpath(genpath(pwd));
 
 f_measures_multi = run_multi_output;
 f_measures_single = run_single_output;
+
 figure
 plot([1:10], f_measures_multi);
 hold on;

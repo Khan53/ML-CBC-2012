@@ -5,6 +5,8 @@ function neuralNet = buildMultipleOutputNeuralNet(P, T, generalizationMethod)
     performanceFunction = 'mse';
     epochs = 100;
     
+    %Depending on the generalization method provided
+    %the code performs either earlystopping or BR
     if strcmpi(generalizationMethod, 'regularization')        
         network = feedforwardnet([15,15], 'trainbr' );
         network.divideFcn = '';
