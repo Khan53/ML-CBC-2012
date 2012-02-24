@@ -24,7 +24,7 @@ function [f_measures,avgMatrix] = run_multi_output()
         [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
         
         %Builds one six output neural nets
-        neuralNet = buildMultipleOutputNeuralNet(trainSet.examples, trainSet.targets, 'earlystop');
+        neuralNet = buildMultipleOutputNeuralNet(trainSet.examples, trainSet.targets, 'regularization');
         
         %Uses the trained nets to classify examples in the test set
         predictions = testANN(neuralNet, testSet);
@@ -38,14 +38,6 @@ function [f_measures,avgMatrix] = run_multi_output()
     end
 
     avgMatrix = computeAverageMatrix(confusionMatrices);
-    %calculate recall and precision
-    %rp = calculate_recall_precision(avgMatrix);
-    %calculate f_measure
-    %f_measure = calculate_f_measure(rp,1);
-    %plot confusion matrix
-    %plot_confusion_matrix(avgMatrix);
-    %plot the variables
-    %plot_stats(rp,f_measure);
     
 end
 
