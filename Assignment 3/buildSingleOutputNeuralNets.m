@@ -10,10 +10,10 @@ function neuralNets = buildSingleOutputNeuralNets(P, T, generalizationMethod)
     epochs = 100;
     
     if strcmpi(generalizationMethod, 'regularization')
-        network = feedforwardnet(hiddenLayers, 'trainbr' );
+        network = feedforwardnet([15,15], 'trainbr' );
         network.divideFcn = '';
     elseif strcmpi(generalizationMethod, 'earlystop')
-        network = feedforwardnet(hiddenLayers);
+        network = feedforwardnet([15,15]);
         network.divideFcn = 'dividerand';
         network.divideMode = 'sample';
         network.divideParam.trainRatio = 0.7;
@@ -22,8 +22,12 @@ function neuralNets = buildSingleOutputNeuralNets(P, T, generalizationMethod)
     end
     
     network.trainFcn = trainingFunction;
+    for layerNum = 1:hiddenLayers
+        network.layers{layerNum}.transferFcn = 'tansig';
+    end
     network.performFcn = performanceFunction; 
     network.trainParam.epochs = epochs;
+    network.trainParam.lr = 0.001;
     network = configure(network, P, targets);
     
     [neuralNets{i}, ~] = train(network, P, targets);
