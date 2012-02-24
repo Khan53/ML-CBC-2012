@@ -1,4 +1,4 @@
-function [f_measures] = run_single_output()
+function [f_measures,avgMatrix] = run_single_output()
     clear
     %Add current directory and all subdirectories to MATLAB search path
     addpath(genpath(pwd));
@@ -35,14 +35,11 @@ function [f_measures] = run_single_output()
 
     avgMatrix = computeAverageMatrix(confusionMatrices);
     %calculate recall and precision
-    rp = calculate_recall_precision(avgMatrix);
+    %rp = calculate_recall_precision(avgMatrix);
     %calculate f_measure
-    f_measure = calculate_f_measure(rp,1);
+    %f_measure = calculate_f_measure(rp,1);
     %plot confusion matrix
-    plot_confusion_matrix(avgMatrix);
+    %plot_confusion_matrix(avgMatrix);
     %plot the variables
-    plot_stats(rp,f_measure);
-    %plot the average f measure for each fold
-    plot(f_measures);
-
+    %plot_stats(rp,f_measure);
 end
