@@ -1,7 +1,7 @@
 clear
 %Add current directory and all subdirectories to MATLAB search path
 addpath(genpath(pwd));
-runs = 2;
+runs = 10;
 %regenerate neural nets several times to account for randomness
 confusionMatrices_multi = cell(1,runs);
 confusionMatrices_single = cell(1,runs);
@@ -16,7 +16,7 @@ for i = 1:runs
     confusionMatrices_single{i} = avgMatrix_single;
 end
 
-avgMatrix = computeAverageMatrix(confusionMatrices_multi);
+avgMatrix = computeAverage(confusionMatrices_multi);
 %calculate recall and precision
 rp = calculate_recall_precision(avgMatrix);
 %calculate f_measure
