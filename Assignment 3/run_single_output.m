@@ -38,7 +38,4 @@ function [f_measures] = run_single_output()
     plot_confusion_matrix(avgMatrix);
     %plot the variables
     plot_stats(rp,f_measure);
-    %plot the average f measure for each fold
-    plot(f_measures);
-
 end
