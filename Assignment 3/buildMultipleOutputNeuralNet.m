@@ -28,3 +28,7 @@ function neuralNet = buildMultipleOutputNeuralNet(P, T, generalizationMethod)
     network.trainParam.lr = 0.001;
     network = configure(network, P, T);
     neuralNet = train(network, P, T);
+    
+    % save ANN
+    filename = 'MultipleOutputNN'
+    save(filename, 'network');

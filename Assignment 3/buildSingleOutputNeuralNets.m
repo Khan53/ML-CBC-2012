@@ -33,4 +33,8 @@ function neuralNets = buildSingleOutputNeuralNets(P, T, generalizationMethod)
     network = configure(network, P, targets);
     
     [neuralNets{i}, ~] = train(network, P, targets);
+    
+    % save ANN
+    filename = strcat('SingleOutputNNforEmotion', int2str(i));
+    save(filename, 'network');
   end
