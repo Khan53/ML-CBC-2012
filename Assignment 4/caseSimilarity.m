@@ -8,8 +8,8 @@ similarityMeasure = 'l1_norm';
 
 if(strcmp(similarityMeasure, 'default') == 1)
     % Length of the vectors describing the problem descriptions
-    lengthOne = size(caseOne.problem);
-    lengthTwo = size(caseTwo.problem);
+    lengthOne = length(caseOne.problem);
+    lengthTwo = length(caseTwo.problem);
     similarity = -abs(lengthOne - lengthTwo);
     
 elseif(strcmp(similarityMeasure, 'l1_norm') == 1)
