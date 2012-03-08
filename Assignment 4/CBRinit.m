@@ -4,6 +4,7 @@ function [ cbr ] = CBRinit( examples, targets )
 % For each group, store the label of the emotion, list of cases and indices
 % of AUs (combinations of AUs) that characterize the emotion.
 cbr.groups = {};
+
 for emotion=1:length(unique(targets))
     cbr.groups{emotion} = struct('label', emolab2str(emotion), ...
                                  'cases', [], ...

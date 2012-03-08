@@ -1,10 +1,10 @@
 function [ similarity ] = caseSimilarity( caseOne, caseTwo )
 % Computes a measure of how similar two cases are.
-% The negative sings suggest that the higher the similarity
+% The negative signs suggest that the higher the similarity
 % value is, the more similar the two cases are.
 
 % the measure we currently use for the CBR system
-similarityMeasure = 'default';
+similarityMeasure = 'l1_norm';
 
 if(strcmp(similarityMeasure, 'default') == 1)
     % Length of the vectors describing the problem descriptions

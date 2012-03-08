@@ -12,7 +12,7 @@ function [confusionMatrix] = generate_confusion_matrix(predictions,actualTargets
   colnum = max(max(predictions)); %Range of emotions in predicted targets
   confusionMatrix = zeros(rownum, colnum); %Constructs confusion matrix  for N emotions
 
-[numRowsPredicted, numColsPredicted] = size(predictions)
+[numRowsPredicted, numColsPredicted] = size(predictions);
 for i = 1:numColsPredicted
     for j=1:numRowsPredicted
         confusionMatrix(actualTargets(j, i), predictions(j, i)) ...

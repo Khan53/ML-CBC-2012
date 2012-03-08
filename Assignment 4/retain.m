@@ -13,12 +13,12 @@ for i = 1:length(cbr.groups)
             break;
         end
 
-        currentCase = cbr.clusters{i}.cases(j);
+        currentCase = cbr.groups{i}.cases(j);
         
         if (isequal(currentCase.problem, solvedCase.problem))
             % Increment typicality for finding identical cases
             currentCase.typicality = currentCase.typicality + 1;          
-            if (newCase.solution ~= 0)
+            if (solvedCase.solution ~= 0)
             	% copy over the solution if we need one
                 currentCase.solution = solvedCase.solution;
             end
