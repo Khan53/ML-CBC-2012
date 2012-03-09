@@ -4,12 +4,12 @@ function [ similarity ] = caseSimilarity( caseOne, caseTwo )
 % value is, the more similar the two cases are.
 
 % the measure we currently use for the CBR system
-similarityMeasure = 'l1_norm';
+similarityMeasure = 'jaccard';
 
 if(strcmp(similarityMeasure, 'default') == 1)
     % Length of the vectors describing the problem descriptions
-    lengthOne = length(caseOne.problem);
-    lengthTwo = length(caseTwo.problem);
+    lengthOne = size(caseOne.problem, 2);
+    lengthTwo = size(caseTwo.problem, 2);
     similarity = -abs(lengthOne - lengthTwo);
     
 elseif(strcmp(similarityMeasure, 'l1_norm') == 1)
@@ -20,5 +20,8 @@ elseif(strcmp(similarityMeasure, 'l1_norm') == 1)
 elseif(strcmp(similarityMeasure, 'l2_norm') == 1)
     % The euclidean distance is simply taking the square root of the manhattan.
     similarity = -sqrt(length(setxor(caseOne.problem, caseTwo.problem)));
-
+elseif(strcmp(similarityMeasure, 'jaccard') == 1)
+    intersectionOfProblems = intersect(caseOne.problem, caseTwo.problem) ;
+    unionOfProblems = union(caseOne.problem, caseTwo.problem) ;
+    similarity = length(intersectionOfProblems) / length(unionOfProblems);
 end

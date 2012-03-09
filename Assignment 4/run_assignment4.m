@@ -13,7 +13,7 @@ cbr = CBRinit(examples,targets);
 
 save CBR cbr;
 
-n = 10;
+n = 1;
 confusionMatrices = cell(1, 10);
 for turn=1:n
     %Start evaluating the learning algorithm using ten-fold cross validation.
