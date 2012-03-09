@@ -4,7 +4,7 @@ function [ similarity ] = caseSimilarity( caseOne, caseTwo )
 % value is, the more similar the two cases are.
 
 % the measure we currently use for the CBR system
-similarityMeasure = 'jaccard';
+similarityMeasure = 'l2_norm';
 
 if(strcmp(similarityMeasure, 'default') == 1)
     % Length of the vectors describing the problem descriptions
