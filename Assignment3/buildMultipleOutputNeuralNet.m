@@ -31,4 +31,4 @@ function neuralNet = buildMultipleOutputNeuralNet(P, T, generalizationMethod)
     
     % save ANN
     filename = 'MultipleOutputNN'
-    save(filename, 'network');
+    save(filename, 'neuralNet');

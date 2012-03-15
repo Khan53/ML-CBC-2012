@@ -1,7 +1,7 @@
 function neuralNets = buildSingleOutputNeuralNets(P, T, generalizationMethod)
   neuralNets = cell(6, 1);
   for i=1:6
-    targets = T(i, :);
+    targets = T(1, :);
     
     %Setup parameters
     hiddenLayers = 2;

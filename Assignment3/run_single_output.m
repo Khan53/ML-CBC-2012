@@ -8,7 +8,7 @@ function [f_measures,avgMatrix] = run_single_output()
     %examples - Nx45 array of AUs present for each example
     %targets - Nx1 array of an emotion (1-6) represented for each example
     [examples,targets] = loaddata('cleandata_students.txt');
-
+       
     [noExamples, ~] = size(examples);
     confusionMatrices = cell(1,noExamples);
     f_measures = zeros(noExamples/10, 1);
@@ -17,7 +17,7 @@ function [f_measures,avgMatrix] = run_single_output()
     for i = 0:9
         [trainSet, testSet] = split_dataset(i, examples, targets);
 
-        %Transforms data 
+        %Transforms data
         [trainSet.examples, trainSet.targets] = ANNdata(trainSet.examples, trainSet.targets);    
         %Builds six single output neural nets
         neuralNets = buildSingleOutputNeuralNets(trainSet.examples, trainSet.targets, 'regularization');
