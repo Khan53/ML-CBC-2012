@@ -29,9 +29,9 @@ for i = 0:9
     actual_targets_set = cat(2,actual_targets_set,testSet.targets); %adds a column for the target's matrix
     
     confMatrixFold = generate_confusion_matrix(predictions, testSet.targets);
-    plot_confusion_matrix(confMatrixFold);
+
     rp = calculate_recall_precision(confMatrixFold);
-    f_measures_per_fold{i} = calculate_f_measure(rp,1)    
+    f_measures_per_fold{i+1} = calculate_f_measure(rp,1)    
 end
 
 end

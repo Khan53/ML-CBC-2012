@@ -8,8 +8,8 @@ function [confusionMatrix] = generate_confusion_matrix(predictions,actualTargets
   
   %Initializations
   noPredictions = size(predictions,1);  %This should be 10, for our slices have 10 examples.
-  rownum = max(max(actualTargets)); %Range of emotions in actual targets
-  colnum = max(max(predictions)); %Range of emotions in predicted targets
+  rownum = 6; %Range of emotions in actual targets
+  colnum = 6; %Range of emotions in predicted targets
   confusionMatrix = zeros(rownum, colnum); %Constructs confusion matrix  for N emotions
 
 [numRowsPredicted, numColsPredicted] = size(predictions);

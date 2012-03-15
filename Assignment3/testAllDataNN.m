@@ -16,7 +16,6 @@ neuralNets = buildMultipleOutputNeuralNet(trainExamples, trainTargets, 'regulari
 %Uses the trained nets to classify examples in the test set
 predictions = testANN(neuralNets, testSet);
 confusionMatrix = create_confusion_matrix(predictions, testSet.targets);
-plot_confusion_matrix(confusionMatrix);
 %calculate recall and precision for this fold
 rp = calculate_recall_precision(confusionMatrix);
 
