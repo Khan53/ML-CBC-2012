@@ -14,7 +14,7 @@ predicted_targets_set = [];
 %given target labels for each test set
 actual_targets_set = [];
 trees_of_emotions = cell(1,6);
-f_measures_per_fold = cell(1, 10);
+f_measures_per_fold = [];
 
 for i = 0:9
     [trainSet, testSet] = split_dataset(i, examples, targets);
@@ -31,7 +31,7 @@ for i = 0:9
     confMatrixFold = generate_confusion_matrix(predictions, testSet.targets);
 
     rp = calculate_recall_precision(confMatrixFold);
-    f_measures_per_fold{i+1} = calculate_f_measure(rp,1);
+    f_measures_per_fold = horzcat(f_measures_per_fold, calculate_f_measure(rp,1));
 end
 
 end

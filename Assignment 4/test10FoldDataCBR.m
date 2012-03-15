@@ -4,7 +4,7 @@ function [ f_measures_per_fold ] = test10FoldDataCBR( data_type )
 
 [examples,targets] = loaddata(strcat(data_type,'data_students.txt'));
 
-f_measures_per_fold = cell(1, 10);
+f_measures_per_fold = [];
 
 for i = 0:9
     [trainSet, testSet] = split_dataset(i, examples, targets);
@@ -12,7 +12,7 @@ for i = 0:9
 
     conf_matrix_for_fold = create_confusion_matrix(testCBR(cbr, testSet.examples), testSet.targets);
     rp = calculate_recall_precision(conf_matrix_for_fold);
-    f_measures_per_fold{i+1} = calculate_f_measure(rp,1);
+    f_measures_per_fold = horzcat(f_measures_per_fold, calculate_f_measure(rp,1));
 end
 
 

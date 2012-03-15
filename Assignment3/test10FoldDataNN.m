@@ -4,7 +4,7 @@ function [ f_measures_per_fold ] = test10FoldDataNN( data_type )
 
 [examples,targets] = loaddata(strcat(data_type, 'data_students.txt'));
 
-f_measures_per_fold = cell(1, 10);
+f_measures_per_fold = [];
 
 %Performs 10-fold cross validation
 for i = 0:9
@@ -24,7 +24,7 @@ for i = 0:9
     rp = calculate_recall_precision(confMatrix);
     %calculate f_measure for this fold, averaging across all classes
     %(emotions)
-    f_measures_per_fold{i+1} = calculate_f_measure(rp,1);
+    f_measures_per_fold = horzcat(f_measures_per_fold, calculate_f_measure(rp,1));
 end
 
 end
