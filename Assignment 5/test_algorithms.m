@@ -1,7 +1,7 @@
 function [tTests, anovaTests_P, anovaTests_ANOVATAB, anovaTests_STATS, multiCompareTests] = test_algorithms(fMeasuresDT, fMeasuresANN, fMeasuresCBR)
 
 %% Run T-Tests
-alpha = 1;
+alpha = 0.5;
 
 %6 emotions, 3 algorithms
 emotions = 6;
@@ -10,9 +10,9 @@ tTests = zeros(emotions,algorithms);
 
 for emotion = 1:emotions
   % DT vs ANN
-  tTests(emotion,1) = ttest2(fMeasuresTrees(emotion,:),fMeasuresANN(emotion),alpha);
+  tTests(emotion,1) = ttest2(fMeasuresDT(emotion,:),fMeasuresANN(emotion),alpha);
   % DT vs CBR
-  tTests(emotion,2) = ttest2(fMeasuresTrees(emotion,:),fMeasuresCBR(emotion),alpha);
+  tTests(emotion,2) = ttest2(fMeasuresDT(emotion,:),fMeasuresCBR(emotion),alpha);
   % ANN vs CBR
   tTests(emotion,3) = ttest2(fMeasuresANN(emotion,:),fMeasuresCBR(emotion),alpha);
 end

@@ -31,7 +31,7 @@ for i = 0:9
     confMatrixFold = generate_confusion_matrix(predictions, testSet.targets);
 
     rp = calculate_recall_precision(confMatrixFold);
-    f_measures_per_fold{i+1} = calculate_f_measure(rp,1)    
+    f_measures_per_fold{i+1} = calculate_f_measure(rp,1);
 end
 
 end

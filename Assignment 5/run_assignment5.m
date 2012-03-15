@@ -22,4 +22,8 @@ cd(oldFolder)
 
 %Test the algorithms
 [tTests, anovaTests_P, anovaTests_ANOVATAB, anovaTests_STATS, multiCompareTests] = ...
-	  test_algorithms(f_measures_for_trees, f_measures_for_NN, f_measures_for_CBR);
+	  test_algorithms(f_measures_for_trees_fold_clean, ... 
+                      f_measures_for_NN_fold_clear, ...
+                      f_measures_for_CBR_fold_clear);
+
+ 

@@ -4,7 +4,6 @@ function [predictions] = testANN(network, testSet)
     if length(network) > 1
         multi_nets = true;
     end
-    testSet.examples
     predictions = zeros(noExamples, 1);
     for index=1:noExamples
         example = testSet.examples(index, :)';        
