@@ -10,11 +10,11 @@ tTests = zeros(emotions,algorithms);
 
 for emotion = 1:emotions
   % DT vs ANN
-  tTests(emotion,1) = ttest2(fMeasuresDT(emotion,:),fMeasuresANN(emotion),alpha);
+  tTests(emotion,1) = ttest2(fMeasuresDT(emotion,:)',fMeasuresANN(emotion)',alpha);
   % DT vs CBR
-  tTests(emotion,2) = ttest2(fMeasuresDT(emotion,:),fMeasuresCBR(emotion),alpha);
+  tTests(emotion,2) = ttest2(fMeasuresDT(emotion,:)',fMeasuresCBR(emotion)',alpha);
   % ANN vs CBR
-  tTests(emotion,3) = ttest2(fMeasuresANN(emotion,:),fMeasuresCBR(emotion),alpha);
+  tTests(emotion,3) = ttest2(fMeasuresANN(emotion,:)',fMeasuresCBR(emotion)',alpha);
 end
 
 
@@ -26,9 +26,9 @@ anovaTests_STATS = cell(1,emotions);
 multiCompareTests = cell(1,emotions);
 
 for emotion = 1:emotions
-  DT_Col = fMeasuresDT(emotion,:);
-  ANN_Col = fMeasuresANN(emotion,:);
-  CBR_Col = fMeasuresCBR(emotion,:);
+  DT_Col = fMeasuresDT(emotion,:)';
+  ANN_Col = fMeasuresANN(emotion,:)';
+  CBR_Col = fMeasuresCBR(emotion,:)';
 
   [P, ANOVATAB, STATS] = anova1([DT_Col ANN_Col CBR_Col],{'DTs','ANNs','CBR'},'off');
   anovaTests_P(emotion) = {P};
