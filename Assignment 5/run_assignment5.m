@@ -27,3 +27,4 @@ cd(oldFolder)
                     f_measures_for_CBR_fold_clean);
 
  
+plot_f_averages(f_measures_for_trees,f_measures_for_NN,f_measures_for_CBR)
