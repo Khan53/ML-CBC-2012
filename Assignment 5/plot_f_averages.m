@@ -1,4 +1,3 @@
-
 function [] = plot_f_averages(DT_fMeasures,NN_fMeasures,CBR_fMeasures)
 
 DT = [DT_fMeasures; mean(DT_fMeasures)];
@@ -7,12 +6,12 @@ CBR = [CBR_fMeasures; mean(CBR_fMeasures)];
 
 
 dat = cat(2,DT,NN,CBR);
-rcount = size(DT_fMeasures,1);
-rnames = cell(rcount+1);
-for i = 1:rcount,
+rcount = size(DT,1);
+rnames = cell(rcount);
+for i = 1:rcount-1,
     rnames{i} = emolab2str(i);
 end
-rnames{rcount+1} = 'Average';
+rnames{rcount} = 'Average';
 
 
 ccount = 3;
