@@ -31,4 +31,14 @@ cd(oldFolder)
                     f_measures_for_NN_fold_noisy, ...
                     f_measures_for_CBR_fold_noisy);
 
- 
+
+plot_f_measure_averages(f_measures_for_trees,f_measures_for_NN,f_measures_for_CBR);
+
+plot_f_measure_averages_fold(f_measures_for_trees_fold_clean,f_measures_for_NN_fold_clean,f_measures_for_CBR_fold_clean);
+plot_f_measure_averages_fold(f_measures_for_trees_fold_noisy,f_measures_for_NN_fold_noisy,f_measures_for_CBR_fold_noisy);
+
+plot_tTests(tTests_clean);
+plot_tTests(tTests_noisy);
+
+plot_anovaTests(anovaTests_P_clean);
+plot_anovaTests(anovaTests_P_noisy);
